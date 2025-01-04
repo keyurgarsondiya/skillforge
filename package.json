@@ -24,18 +24,19 @@
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "cd client && lint-staged",
+      "pre-commit": "lint-staged",
       "pre-push": "npm run verify --prefix client"
     }
   },
   "lint-staged": {
     "src/**/*.{ts, tsx, json}": [
       "prettier --write",
-      "npm run lint -- --fix"
+      "cd client && npm run lint -- --fix"
     ]
   }
 }
