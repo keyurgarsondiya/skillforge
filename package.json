@@ -34,9 +34,13 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{ts, tsx, json}": [
+    "client/**/*.{ts,tsx,json}": [
       "prettier --write",
       "cd client && npm run lint -- --fix"
+    ],
+    "server/**/*.{ts,json}": [
+      "prettier --write",
+      "cd server && npm run lint -- --fix"
     ]
   }
 }
