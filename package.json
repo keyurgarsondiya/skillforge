@@ -1,0 +1,41 @@
+{
+  "name": "skillforge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "npm run server --prefix server",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keyurgarsondiya/skillforge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keyurgarsondiya/skillforge/issues"
+  },
+  "homepage": "https://github.com/keyurgarsondiya/skillforge#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "husky": "^9.1.7"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "cd client && lint-staged",
+      "pre-push": "npm run verify --prefix client"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts, tsx, json}": [
+      "prettier --write",
+      "npm run lint -- --fix"
+    ]
+  }
+}
