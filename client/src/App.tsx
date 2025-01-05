@@ -1,12 +1,12 @@
-// import React from 'react';
-// import { HashRouter } from 'react-router-dom';
+import React from 'react';
+import { HashRouter } from 'react-router-dom';
+import { Router } from './components';
 
-function App() {
-  console.log('Adding Comment to check lint staged');
+function App(): React.ReactElement {
   return (
-    <div className={'text-xl bg-blue-500'}>
-      <h1>Hello World!</h1>
-    </div>
+    <HashRouter>
+      <Router />
+    </HashRouter>
   );
 }
 
