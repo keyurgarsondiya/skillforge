@@ -1,11 +1,26 @@
 import express, { Request, Response } from 'express';
+import dotenv from 'dotenv';
+import { connectDB } from './config/db';
+import { userRouter } from './routes';
 const app = express();
-const port = 5000;
+
+dotenv.config();
+
+const PORT = process.env.PORT || 5000;
+
+connectDB().then((res) => {
+  console.log('Res: ', res);
+});
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req: Request, res: Response) => {
   res.status(200).send('Welcome Back');
 });
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+app.use('/api/users', userRouter);
+
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
 });

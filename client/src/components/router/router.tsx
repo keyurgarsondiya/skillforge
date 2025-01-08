@@ -3,7 +3,8 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { Pages } from '../../constants';
 import { LoadingSuspense } from '../loading-suspense';
-import { LoadingSpinner } from '../loading-spinner';
+
+// Pages exported should be in default due to use of React.lazy
 
 const Home = React.lazy(
   () =>
@@ -13,13 +14,29 @@ const Home = React.lazy(
     ),
 );
 
+const Login = React.lazy(
+  () =>
+    import(
+      // tslint:disable-next-line:space-in-parens
+      /* webpackChunk: "home-page" */ '../../pages/login'
+    ),
+);
+
+const SignUp = React.lazy(
+  () =>
+    import(
+      // tslint:disable-next-line:space-in-parens
+      /* webpackChunk: "home-page" */ '../../pages/sign-up'
+    ),
+);
+
 function Loading(): React.ReactElement {
   return <LoadingSuspense>{getPageComponent()}</LoadingSuspense>;
 }
 
 function componentSuspense(Component: any): React.ReactNode {
   return (
-    <React.Suspense fallback={<LoadingSpinner />}>
+    <React.Suspense fallback={<div>{'Loading...'}</div>}>
       <Component />
     </React.Suspense>
   );
@@ -30,6 +47,8 @@ function getPageComponent(): React.ReactElement {
     <Routes>
       <Route path="/" element={<Navigate to={Pages.Home} replace />} />
       <Route path={Pages.Home} element={componentSuspense(Home)} />
+      <Route path={Pages.Login} element={componentSuspense(Login)} />
+      <Route path={Pages.SignUp} element={componentSuspense(SignUp)} />
     </Routes>
   );
 }
