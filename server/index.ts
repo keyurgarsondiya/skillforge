@@ -8,9 +8,7 @@ dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 
-connectDB().then((res) => {
-  console.log('Res: ', res);
-});
+connectDB();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
