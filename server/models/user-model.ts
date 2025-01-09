@@ -7,8 +7,9 @@ interface IUser extends Document {
   email: string;
   password: string;
   role: string;
-  avatar: string;
-  isActive: boolean;
+  profile: { bio: string; skills: Array<string> };
+  createdAt: Date;
+  updatedAt: Date;
   matchPassword(enteredPassword: string): Promise<boolean>;
 }
 
@@ -16,39 +17,28 @@ const userSchema = new Schema<IUser>(
   {
     name: {
       type: String,
-      required: [true, 'Please add a name'],
+      required: true,
     },
     email: {
       type: String,
-      required: [true, 'Please add an email'],
+      required: true,
       unique: true,
-      match: [
-        /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-        'Please enter a valid email',
-      ],
     },
     password: {
       type: String,
-      required: [true, 'Please add a password'],
-      minlength: 6,
+      required: true,
     },
     role: {
       type: String,
       enum: ['student', 'instructor', 'admin'],
       default: 'student',
     },
-    avatar: {
-      type: String,
-      default: null, // URL for profile picture (optional)
-    },
-    isActive: {
-      type: Boolean,
-      default: true,
+    profile: {
+      bio: { type: String },
+      skills: [String],
     },
   },
-  {
-    timestamps: true,
-  },
+  { timestamps: true },
 );
 
 userSchema.pre('save', async function (next) {

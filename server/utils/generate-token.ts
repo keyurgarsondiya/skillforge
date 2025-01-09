@@ -1,5 +1,6 @@
 import jwt, { Secret } from 'jsonwebtoken';
 import { Types } from 'mongoose';
+import { COOKIE_NAME } from '../constants';
 
 export const generateToken = (res: any, userId: Types.ObjectId) => {
   const token = jwt.sign(
@@ -9,7 +10,7 @@ export const generateToken = (res: any, userId: Types.ObjectId) => {
       expiresIn: '30d',
     },
   );
-  res.cookie('token', token, {
+  res.cookie(COOKIE_NAME, token, {
     httpOnly: true,
     secure: process.env.NODE_ENV !== 'development',
     sameSite: 'strict',

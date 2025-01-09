@@ -1,1 +1,1 @@
-export { registerUser, authUser } from './user-controller';
+export { registerUser, authUser, getUserProfile } from './user-controller';
