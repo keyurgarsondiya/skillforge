@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import { connectDB } from './config/db';
-import { userRouter } from './routes';
+import { courseRouter, userRouter } from './routes';
 import { errorHandler, notFound } from './middleware';
 import { scheduler } from './utils';
 const app = express();
@@ -24,6 +24,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use('/api/users', userRouter);
+app.use('/api/courses', courseRouter);
 
 app.use(notFound);
 app.use(errorHandler);

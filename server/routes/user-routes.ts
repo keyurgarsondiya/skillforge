@@ -1,11 +1,23 @@
 import express from 'express';
-import { authUser, registerUser } from '../controller';
+import {
+  authUser,
+  getUserProfile,
+  logoutUser,
+  registerUser,
+  updateUserProfile,
+} from '../controller';
 import { protect } from '../middleware';
+import { Role } from '../constants';
 
 const router = express.Router();
 
-router.post('/', registerUser);
+// User Routes
+router.post('/register', registerUser);
 router.post('/auth', authUser);
-router.post('/profile', protect, authUser);
+router.post('/logout', logoutUser);
+router
+  .route('/profile')
+  .get(protect(Role.Instructor, Role.Admin, Role.Student), getUserProfile)
+  .put(protect(Role.Instructor, Role.Admin, Role.Student), updateUserProfile);
 
 export default router;
