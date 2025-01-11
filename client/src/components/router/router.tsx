@@ -18,7 +18,7 @@ const Login = React.lazy(
   () =>
     import(
       // tslint:disable-next-line:space-in-parens
-      /* webpackChunk: "home-page" */ '../../pages/login'
+      /* webpackChunk: "login-page" */ '../../pages/login'
     ),
 );
 
@@ -26,7 +26,15 @@ const SignUp = React.lazy(
   () =>
     import(
       // tslint:disable-next-line:space-in-parens
-      /* webpackChunk: "home-page" */ '../../pages/sign-up'
+      /* webpackChunk: "signup-page" */ '../../pages/sign-up'
+    ),
+);
+
+const ForgotPassword = React.lazy(
+  () =>
+    import(
+      // tslint:disable-next-line:space-in-parens
+      /* webpackChunk: "forgot-password-page" */ '../../pages/forgot-password'
     ),
 );
 
@@ -49,6 +57,10 @@ function getPageComponent(): React.ReactElement {
       <Route path={Pages.Home} element={componentSuspense(Home)} />
       <Route path={Pages.Login} element={componentSuspense(Login)} />
       <Route path={Pages.SignUp} element={componentSuspense(SignUp)} />
+      <Route
+        path={Pages.ForgotPassword}
+        element={componentSuspense(ForgotPassword)}
+      />
     </Routes>
   );
 }

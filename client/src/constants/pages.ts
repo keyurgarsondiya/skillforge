@@ -1,8 +1,11 @@
 export enum Pages {
   Home = '/home',
+  Courses = '/courses',
   About = '/about',
   Login = '/login',
   SignUp = '/sign-up',
+  ForgotPassword = '/forgot-password',
+  Contact = '/contact',
   Logout = '/logout',
   StudentDashboard = '/student-dashboard',
   StudentCourses = '/student-courses',
