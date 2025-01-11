@@ -3,6 +3,7 @@ import { User } from '../models';
 import { generateToken } from '../utils';
 import asyncHandler from 'express-async-handler';
 import { COOKIE_NAME } from '../constants';
+import cookieParser from 'cookie-parser';
 
 // @desc Auth user/set token
 //route POST /api/users/auth
@@ -19,6 +20,21 @@ export const authUser = asyncHandler(async (req: Request, res: Response) => {
     res.status(401);
     throw new Error('Invalid email or password');
   }
+});
+
+// @desc Verify user
+//route POST /api/users/verify
+// @access Public
+
+export const verifyUser = asyncHandler(async (req: any, res: Response) => {
+  const user = req.user;
+  res.json({
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    // Add any other user fields you need
+  });
 });
 
 // @desc Register

@@ -18,6 +18,31 @@ const routes: RouteDefinitions = {
     key: 'home',
     path: hashRoute(Pages.Home),
   },
+  [Pages.Courses]: {
+    label: 'Courses',
+    key: 'courses',
+    path: hashRoute(Pages.Courses),
+  },
+  [Pages.About]: {
+    label: 'About',
+    key: 'About',
+    path: hashRoute(Pages.About),
+  },
+  [Pages.Contact]: {
+    label: 'Contact',
+    key: 'contact',
+    path: hashRoute(Pages.Contact),
+  },
+  [Pages.Login]: {
+    label: 'Login',
+    key: 'login',
+    path: hashRoute(Pages.Login),
+  },
+  [Pages.SignUp]: {
+    label: 'Sign Up',
+    key: 'sign-up',
+    path: hashRoute(Pages.SignUp),
+  },
 };
 
 export const linkFromRoutes = (routes: RouteDefinitions): Array<Link> =>
